@@ -14,10 +14,10 @@ namespace _5._3FinalProject
             (string Name, string LastName, int Age, bool HavePets, int NumPets, string[] NamePets, int NumColors, string[] NameColors) User;
 
             Console.WriteLine("Введите имя: ");
-            User.Name = Console.ReadLine();
+            User.Name = EnterAndCheckString();
 
             Console.WriteLine("Введите фамилию: ");
-            User.LastName = Console.ReadLine();
+            User.LastName = EnterAndCheckString();
 
             Console.WriteLine("Введите ваш возвраст:");
             User.Age = EnterAndCheckValue();
@@ -58,7 +58,7 @@ namespace _5._3FinalProject
             string[] namePets = new string[NumPets];
             for (int i = 0; i < namePets.Length; i++)
             {
-                namePets[i] = Console.ReadLine();
+                namePets[i] = EnterAndCheckString();
             }
             return namePets;
         }
@@ -68,7 +68,7 @@ namespace _5._3FinalProject
             string[] nameColors = new string[NumColors];
             for (int i = 0; i < nameColors.Length; i++)
             {
-                nameColors[i] = Console.ReadLine();
+                nameColors[i] = EnterAndCheckString();
             }
             return nameColors;
         }
@@ -78,6 +78,16 @@ namespace _5._3FinalProject
             while (!int.TryParse(Console.ReadLine(), out result) || result < 0)
             {
                 Console.WriteLine("Ошибка ввода! Введите число:");
+            }
+            return result;
+        }
+        static string EnterAndCheckString()
+        {
+            string result = Console.ReadLine();
+            while (int.TryParse(result, out int intResult) || intResult != 0)
+            {
+                Console.WriteLine("Ошибка ввода! Повторите попытку:");
+                result = Console.ReadLine();
             }
             return result;
         }
